@@ -6,7 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Drupal\Console\Core\Command\Shared\ContainerAwareCommandTrait;
-use Drupal\Console\Style\DrupalStyle;
+use Drupal\Console\Core\Style\DrupalStyle;
 use Symfony\Component\Console\Input\InputArgument;
 
 use Drupal\Core\Menu\MenuTreeParameters;
@@ -60,7 +60,7 @@ class MenuLauncherItemCommand extends BaseCommand {
     switch($action) {
       case 'edit':
         $io->info('You want to edit');
-        exec('open ' . $this->getDrupalService('url_generator')->generateFromRoute('menu_ui.link_edit', ['menu_link_plugin' => $menuItem], ['absolute' => TRUE]));
+        exec('open ' . $this->get('url_generator')->generateFromRoute('menu_ui.link_edit', ['menu_link_plugin' => $menuItem], ['absolute' => TRUE]));
 //        menu_ui.link_edit
         break;
 
@@ -141,7 +141,7 @@ class MenuLauncherItemCommand extends BaseCommand {
 
   function getChildMenuItemOptions($menuItem) {
     $options = [];
-    $menuLinkTree = $this->getDrupalService('menu.link_tree');
+    $menuLinkTree = $this->get('menu.link_tree');
     $element = $this->getMenuLinkTreeElement($menuItem);
 
     if ($element->subtree) {
@@ -164,7 +164,7 @@ class MenuLauncherItemCommand extends BaseCommand {
 
 
   function getMenuLinkTreeElement($menuItem) {
-    $menuLinkTree = $this->getDrupalService('menu.link_tree');
+    $menuLinkTree = $this->get('menu.link_tree');
     $parameters = new MenuTreeParameters();
     $parameters->setMaxDepth(1);
     $parameters->setRoot($menuItem);
