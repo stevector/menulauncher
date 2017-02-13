@@ -1,7 +1,7 @@
 {
   "name": "stevector/menulauncher",
   "require": {
-    "drupal/console-extend-plugin": "dev-master",
+    "drupal/console-extend-plugin": "dev-master"
   },
   "autoload": {
     "psr-4": { "stevector\\": "src/" }
