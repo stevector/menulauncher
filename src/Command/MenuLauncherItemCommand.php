@@ -131,19 +131,13 @@ class MenuLauncherItemCommand extends BaseCommand {
     }
   }
 
-
-
-
-
   function getParent($menuItem) {
       return  $this->getMenuLink($menuItem)->getParent();
   }
 
   function getMenuLink($menuItem) {
-
     return  $this->getMenuLinkTreeElement($menuItem)->link;
   }
-
 
   function getChildMenuItemOptions($menuItem) {
     $options = [];
